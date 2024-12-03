@@ -7,8 +7,8 @@ struct Game {
     std::array<char, 9> tab;
 };
 
-bool checkIfCaseEmpty(const std::array<char, 9> const &tab, int const caseNumber);
-bool checkWinner(const std::array<char, 9> &tab, Player const player);
+bool checkIfCaseEmpty(std::array<char, 9> const &tab, int const caseNumber);
+bool checkWinner(std::array<char, 9> const &tab, Player const player);
 void chooseCase(std::array<char, 9> &tab, Player const player);
 void initializeTwoPlayersMode();
 void initializeOnePlayerMode();
