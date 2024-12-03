@@ -10,9 +10,9 @@ Player createPlayer() {
     Player player {};
 
     std::cout << "\n";
-    std::cout << "Entrez un nom de joueur :";
+    std::cout << "Entrez un nom de joueur : ";
     std::cin >> player.name;
-    std::cout << "Entrez un symbole (X ou O) :";
+    std::cout << "Entrez un symbole (X ou O) : ";
     std::cin >> player.symbol;
 
     return player;

@@ -8,7 +8,9 @@
 struct Game {
     std::string winner {" "};
     int count {0};
-    std::array<char, 9> tab {' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '};
+    std::array<char, 9> tab {' ', ' ', ' ',
+                            ' ', ' ', ' ', 
+                            ' ', ' ', ' '};
 };
 
 bool checkIfCaseEmpty(std::array<char, 9> const &tab, int const caseNumber) {
@@ -33,7 +35,7 @@ bool checkWinner(std::array<char, 9> const &tab, Player const player) {
 
 void chooseCase(std::array<char, 9> &tab, Player const player) {
     int caseNumber {};
-    std::string input;
+    std::string input {};
 
     do {
         std::cout << player.name << ", choisissez une case (1-9) : ";
@@ -47,7 +49,7 @@ void chooseCase(std::array<char, 9> &tab, Player const player) {
         caseNumber = input[0] - '0';
 
         if (caseNumber < 1 || caseNumber > 9) {
-            std::cout << "Veuillez choisir un numero valide (1-9).\n";
+            std::cout << "Veuillez choisir un chiffre valide (1-9).\n";
         } else if (!checkIfCaseEmpty(tab, caseNumber)) {
             std::cout << "Cette case est deja occupee.\n";
         } else {

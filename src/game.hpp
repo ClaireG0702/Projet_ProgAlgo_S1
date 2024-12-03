@@ -4,6 +4,7 @@
 
 struct Game {
     char winner;
+    int count;
     std::array<char, 9> tab;
 };
 
