@@ -70,10 +70,28 @@ void chooseColumn(std::array<std::array<char, 6>, 7> &tab, Player const player) 
 bool checkConnect4Winner(std::array<std::array<char, 6>, 7> const &tab, Player const player) {
     int index {0};
 
-    // Conditions victoires (lignes, colonnes et diagonales) + décalage index
+    for(int i{0}; i < 2; i++) {
+        for(int j{0}; j < 7; j++) {
+            if(tab[i][j] == player.symbol && tab[i+1][j] == player.symbol && tab[i+2][j] == player.symbol && tab[i+3][j] == player.symbol) {
+                return true;
+            }
+        }
+    }
+    for(int i{0}; i < 6; i++) {
+        for(int j{0}; j < 3; j++) {
+            if(tab[i][j] == player.symbol && tab[i][j+1] == player.symbol && tab[i][j+2] == player.symbol && tab[i][j+3] == player.symbol) {
+                return true;
+            }
+        }
+    }
     for(int i{0}; i < 2; i++) {
         for(int j{0}; j < 3; j++) {
-            
+            if(tab[i][j] == player.symbol && tab[i+1][j+1] == player.symbol && tab[i+2][j+2] == player.symbol && tab[i+3][j+3] == player.symbol){
+                return true;
+            }
+            if(tab[i+3][j] == player.symbol && tab[i+2][j+1] == player.symbol && tab[i+1][j+2] == player.symbol && tab[i][j+3] == player.symbol) {
+                return true;
+            }
         }
     }
     
