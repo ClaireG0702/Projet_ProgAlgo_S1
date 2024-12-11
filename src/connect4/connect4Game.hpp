@@ -8,3 +8,4 @@ struct Connect4Game {
 };
 
 void initializeConnect4TwoPlayers();
+void initializeConnect4OnePLayer();

@@ -67,6 +67,25 @@ void chooseColumn(std::array<std::array<char, 6>, 7> &tab, Player const player) 
     addPlayerSymbol(tab, columnNumber, player.symbol);
 }
 
+void randomColumn(std::array<std::array<char, 6>, 7> &tab, Player const player) {
+    int columnNumber {};
+
+    do {
+        srand(time(0));
+        columnNumber = (rand() % 7) + 1;
+
+        if(columnNumber < 1 || columnNumber > 7) {
+            std::cout << "Erreur colonne non valide.\n";
+        } else if(checkIfColumnFull(tab, columnNumber)) {
+            // std::cout << "Cette colonne est deja complete.\n";
+        } else {
+            break;
+        }
+    } while(true);
+
+    addPlayerSymbol(tab, columnNumber, player.symbol);
+}
+
 bool checkConnect4Winner(std::array<std::array<char, 6>, 7> const &tab, Player const player) {
     int index {0};
 
@@ -114,6 +133,45 @@ void initializeConnect4TwoPlayers() {
     while(game.count < 42 && game.winner == " ") {
         Player currentPlayer = (game.count % 2 == 0) ? player1 : player2;
         chooseColumn(game.tab, currentPlayer);
+        drawConnect4Board(game.tab);
+
+        if(checkConnect4Winner(game.tab, currentPlayer)) {
+            game.winner = currentPlayer.name;
+            break;
+        }
+
+        game.count++;
+    }
+
+    if(game.winner != " ") {
+        std::cout << game.winner << " a gagne !\n";
+    } else {
+        std::cout << "Match nul !\n";
+    }
+}
+
+void initializeConnect4OnePLayer() {
+    Connect4Game game {};
+
+    Player player2 = {"IA", 64};
+    Player player1 = createPlayer();
+
+    while (player1.symbol == player2.symbol) {
+        std::cout << "Le symbole est deja utilise par l'IA. Choisissez un autre symbole : ";
+        std::cin >> player1.symbol;
+    }
+    
+    drawConnect4Board(game.tab);
+
+    while(game.count < 42 && game.winner == " ") {
+        Player currentPlayer = (game.count % 2 == 0) ? player1 : player2;
+        
+        if(game.count % 2 == 0) {
+            chooseColumn(game.tab, currentPlayer);
+        } else {
+            randomColumn(game.tab, currentPlayer);
+        }
+
         drawConnect4Board(game.tab);
 
         if(checkConnect4Winner(game.tab, currentPlayer)) {
